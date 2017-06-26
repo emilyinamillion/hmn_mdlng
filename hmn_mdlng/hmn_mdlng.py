@@ -14,6 +14,8 @@
     Defaults:
         Dimensionality Reduction - None
         Holdout data (validation set) - True
+        Logistic Regression
+        Count Vectorizer
 
     :author: emilyinamillion
     :license: MIT License
