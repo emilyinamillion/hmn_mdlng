@@ -39,9 +39,9 @@ import re
 import numpy as np
 
 
-class modeler(object):
+class Modeler(object):
     
-    def __init__(self, data, X, y, vect = CountVectorizer(), mod = LogisticRegression(), sel = None, holdout = True):
+    def __init__(self, data, X_column_label, y_column_label, vect = CountVectorizer(), mod = LogisticRegression(), sel = None, holdout = True):
         self.data = data
         self.vect = vect
         self.mod = mod
