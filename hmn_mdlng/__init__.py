@@ -1,1 +1,1 @@
-from .hmn_mdlng import Modeler
+from .hmn_mdlng import NLPModeler
