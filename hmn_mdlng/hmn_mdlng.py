@@ -39,7 +39,7 @@ import re
 import numpy as np
 
 
-class Modeler(object):
+class NLPModeler(object):
     
     def __init__(self, data, X_column_label, y_column_label, vect = CountVectorizer(), mod = LogisticRegression(), sel = None, holdout = True):
         self.data = data
@@ -48,7 +48,7 @@ class Modeler(object):
         self.sel = sel
         self.holdout = holdout
         if self.holdout == True:
-            self.data_split()
+            self.data_splitter()
             
         self.X, self.X_label = self.data[X], X
         self.y, self.y_label = self.data[y], y 
@@ -59,11 +59,11 @@ class Modeler(object):
             
         self.test_df = pd.DataFrame(self.y_test)
         self.class_value_dict = self.make_value_counts(self.y_test)
-        self.modeled = self.model_execution()
+        self.modeled = self.model_trainer()
         if self.holdout == True:
-            self.validation_function()
+            self.validator()
         
-    def data_split(self):
+    def data_splitter(self):
         self.validation = self.data.sample(frac = 0.1)
         self.data = self.data.loc[self.data.index.difference(self.validation.index)]
         
@@ -77,16 +77,17 @@ class Modeler(object):
     def predictor(self, to_predict):
         return self.clf.predict(to_predict)
     
-    def validation_function(self):
+    def validator(self):
         print("\n\nValidation Dataset shape: ", self.validation.shape)
         self.class_value_dict = self.make_value_counts(self.validation[self.y_label])
         self.validation["predicted_class"] = pd.Series(self.modeled.predict(self.validation[self.X_label]), \
                                                     index = self.validation.index)
         self.metrics_(self.validation[self.y_label], self.validation.predicted_class)
         self.accuracy_breakdown(self.validation)
-        
-    def model_execution(self):
-        self.feature_stats()
+    
+    ## split out testing to another function - 6/28/17
+    def model_trainer(self):
+        self.get_feature_stats()
         
         print("Training Model, does your data have what it takes? ⌐(ಠ۾ಠ)¬")
         self.clf = self.mod.fit(self.X_train_transformed, self.y_train)
@@ -106,7 +107,7 @@ class Modeler(object):
             ])
         return pipeline
     
-    def feature_stats(self):
+    def get_feature_stats(self):
         
         print("Reduced dimensions (full dataframe) shape: ", self.features.shape)
         print("Train dataframe shape: ", self.X_train_transformed.shape)
