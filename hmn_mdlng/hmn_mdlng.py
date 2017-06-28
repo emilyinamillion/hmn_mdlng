@@ -21,6 +21,7 @@
     :license: MIT License
 """
 
+## make imports a function of whatever model / vectorizer / reducer is passed in 6/28/17
 import pandas as pd
 import warnings
 warnings.filterwarnings('ignore')
