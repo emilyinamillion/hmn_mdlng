@@ -1,1 +1,1 @@
-from .hmn_mdlng import modeler
+from .hmn_mdlng import Modeler
