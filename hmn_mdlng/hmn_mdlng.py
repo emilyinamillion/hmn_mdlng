@@ -113,10 +113,10 @@ class NLPModeler(object):
         print("Reduced dimensions (full dataframe) shape: ", self.features.shape)
         print("Train dataframe shape: ", self.X_train_transformed.shape)
         print("Test dataframe shape: ", self.X_test_transformed.shape)
-        print("...........................\n")
+        print("." * 20, "\n")
         print("Train value distribution: \n", self.y_train.value_counts(), "\n")
         print("Test value dist: \n", self.y_test.value_counts(), "\n")
-        print("############################################\n")
+        print("#" * 20, "\n")
     
     def make_value_counts(self, to_count):
         value_cnts = to_count.value_counts().reset_index()
