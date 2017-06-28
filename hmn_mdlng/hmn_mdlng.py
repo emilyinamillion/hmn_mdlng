@@ -152,6 +152,6 @@ class NLPModeler(object):
         os.system("printf '\a'")
         os.system("printf '\a'")
     
-    def main(self):
+    def return_model(self):
         self.sound()
         return self.modeled
