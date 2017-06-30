@@ -36,6 +36,7 @@ NLPModeler(df, X_column_label="text", y_column_label="target")
 
 
 def main():
+	print("running test on 20newsgroups data - consider the meaning of life while we clean the text.")
 	NLPModeler(df, X_column_label = "text", y_column_label="target")
 	
 if __name__ == '__main__':
