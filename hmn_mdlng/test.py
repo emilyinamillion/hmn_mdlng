@@ -21,23 +21,17 @@ def cleaner(text):
 
     return " ".join([tok for tok in tokens if len(tok) != 1 and tok not in STOPLIST])
 
-categories = ['alt.atheism', 'soc.religion.christian','comp.graphics', 'sci.med']
-
-print("running test on 20newsgroups data - consider the meaning of life while we clean the text.")
-twenty_train = fetch_20newsgroups(subset='train',
-categories=categories, shuffle=True, random_state=42)
-labels = dict(enumerate(twenty_train.target_names))
-y = [labels.get(i) for i in twenty_train.target]
-X = twenty_train.data
-df = pd.DataFrame(X, y).reset_index()
-df.columns = ["target", "text"]
-df.text = df.text.apply(cleaner)
-NLPModeler(df, X_column_label="text", y_column_label="target")
-
-
-
 def main():
+	categories = ['alt.atheism', 'soc.religion.christian','comp.graphics', 'sci.med']
 	print("running test on 20newsgroups data - consider the meaning of life while we clean the text.")
+	twenty_train = fetch_20newsgroups(subset='train',
+	categories=categories, shuffle=True, random_state=42)
+	labels = dict(enumerate(twenty_train.target_names))
+	y = [labels.get(i) for i in twenty_train.target]
+	X = twenty_train.data
+	df = pd.DataFrame(X, y).reset_index()
+	df.columns = ["target", "text"]
+	df.text = df.text.apply(cleaner)
 	NLPModeler(df, X_column_label = "text", y_column_label="target")
 	
 if __name__ == '__main__':
