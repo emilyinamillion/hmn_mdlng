@@ -1,7 +1,6 @@
 """
     package.module
     ~~~~~~~~~~~~~
-
     Module for human analysis of supervised learning natural language processing model results from sklearn.
     A variety of models and dimensionality reduction algorithms are available. 
     I wrote this module as a way to more clearly understand Precision and Recall in my results, to think critically
@@ -16,7 +15,6 @@
         Holdout data (validation set) - True
         Logistic Regression
         Count Vectorizer
-
     :author: emilyinamillion
     :license: MIT License
 """
@@ -79,7 +77,7 @@ class NLPModeler(object):
         return self.clf.predict(to_predict)
     
     def validator(self):
-        print("\n\nValidation Dataset shape: ", self.validation.shape)
+        print("\n", "#" * 80, "\n\nValidation Dataset shape: ", self.validation.shape)
         self.class_value_dict = self.make_value_counts(self.validation[self.y_label])
         self.validation["predicted_class"] = pd.Series(self.modeled.predict(self.validation[self.X_label]), \
                                                     index = self.validation.index)
@@ -106,6 +104,7 @@ class NLPModeler(object):
                 ('sel', self.sel),
                 ('clf', self.clf),
             ])
+        self.sound()
         return pipeline
     
     def get_feature_stats(self):
@@ -116,7 +115,7 @@ class NLPModeler(object):
         print("." * 20, "\n")
         print("Train value distribution: \n", self.y_train.value_counts(), "\n")
         print("Test value dist: \n", self.y_test.value_counts(), "\n")
-        print("#" * 20, "\n")
+        print("#" * 80, "\n")
     
     def make_value_counts(self, to_count):
         value_cnts = to_count.value_counts().reset_index()
@@ -136,11 +135,11 @@ class NLPModeler(object):
         scores_df["%"] = scores_df.apply(percent_total_accuracy, axis=1)
 
         true_scores = scores_df[scores_df["%"] > 0]
-        print("\nTrue Assignments\n", true_scores.sort_values("%", ascending = False).head(10), "\n")
+        print("\nTRUE Assignments\n", true_scores.sort_values("%", ascending = False).head(10), "\n")
 
         false_scores = scores_df[scores_df["%"] < 0 ]
         false_scores["%"] = false_scores["%"].apply(lambda x: -(x))
-        print("False Assignments\n", false_scores.sort_values("%", ascending = False).head(10))
+        print("FALSE Assignments\n", false_scores.sort_values("%", ascending = False).head(10))
         
     def metrics_(self, predicted_values, actual_values):
         print("------- Performance Metric Summary --------")
@@ -152,7 +151,7 @@ class NLPModeler(object):
         os.system("printf '\a'")
         os.system("printf '\a'")
         os.system("printf '\a'")
-    
+        
+    @property
     def return_model(self):
-        self.sound()
         return self.modeled
