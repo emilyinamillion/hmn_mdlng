@@ -23,6 +23,7 @@ def cleaner(text):
 
 categories = ['alt.atheism', 'soc.religion.christian','comp.graphics', 'sci.med']
 
+print("running test on 20newsgroups data - consider the meaning of life while we clean the text.")
 twenty_train = fetch_20newsgroups(subset='train',
 categories=categories, shuffle=True, random_state=42)
 labels = dict(enumerate(twenty_train.target_names))
