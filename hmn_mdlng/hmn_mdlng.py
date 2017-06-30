@@ -51,8 +51,8 @@ class NLPModeler(object):
         if self.holdout == True:
             self.data_splitter()
             
-        self.X, self.X_label = self.data[X], X
-        self.y, self.y_label = self.data[y], y 
+        self.X, self.X_label = self.data[X_column_label], X_column_label
+        self.y, self.y_label = self.data[y_column_label], y_column_label 
         self.features = vect.fit_transform(self.X) 
         self.features_reduced = self.dim_reducer()
         self.X_train_transformed, self.X_test_transformed, \
