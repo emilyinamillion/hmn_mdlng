@@ -24,7 +24,7 @@ import pandas as pd
 import warnings
 warnings.filterwarnings('ignore')
 
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, f1_score, accuracy_score, recall_score, precision_score
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import LogisticRegression, LogisticRegressionCV, RandomizedLogisticRegression, Perceptron
