@@ -18,25 +18,17 @@
     :author: emilyinamillion
     :license: MIT License
 """
-
-## make imports a function of whatever model / vectorizer / reducer is passed in 6/28/17
 from __future__ import print_function
 import pandas as pd
 import warnings
 warnings.filterwarnings('ignore')
 
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix, f1_score, accuracy_score, recall_score, precision_score
+from sklearn.metrics import confusion_matrix, accuracy_score
 from sklearn.pipeline import Pipeline
 
-
-from sklearn.linear_model import LogisticRegression, LogisticRegressionCV, RandomizedLogisticRegression, Perceptron
-from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
-from sklearn.svm import SVC
-from sklearn.feature_selection import VarianceThreshold
-from sklearn.decomposition import TruncatedSVD
-from sklearn.naive_bayes import MultinomialNB
-
+from sklearn.linear_model import LogisticRegression
+from sklearn.feature_extraction.text import CountVectorizer
 
 
 
@@ -145,8 +137,9 @@ class NLPModeler(object):
         
     def metrics_(self, predicted_values, actual_values):
         print("------- Performance Metric Summary --------")
-        print("Confusion Matrix: \n", confusion_matrix(predicted_values, actual_values))
-        print("Total Accuracy Score: ", accuracy_score(predicted_values, actual_values))     
+        print("Confusion Matrix: \n", confusion_matrix(actual_values, predicted_values))
+        print("Total Accuracy Score: ", accuracy_score(actual_values, predicted_values))
+        print(classification_report(actual_values, predicted_values))
     
     def sound(self):
         import os
