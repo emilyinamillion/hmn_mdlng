@@ -17,16 +17,16 @@ hmn_mdlng mostly just provides a smoother process for modeling utilizing sci-kit
 5. Prints false assignments
 
 ### WHAT DOES HMN_MDLNG NOT DO?
-Provide moral support during particularly difficult modeling tasks. 
+Provide moral support during particularly difficult modeling tasks. Look out for this in the 2.0 release. 
 
-## How do I install this little thing?
+### How do I install this little thing?
 I'll eventually get this into the pypi ecosystem once it's bulked up enough, but for the moment I've included a setup.py file and a test.py modeling off 20 NewsGroups. So anyway, git clone this repo, cd into the folder, and run this in your terminal.
 
 ``` python 
  python setup.py install
  ```
 
-## This is the beginning
+### This is the beginning
 
 hmn_mdlng is still very much under construction. I wrote this module for a very specific and NLP-centric purpose as it has been a work project, but I recognize that it could be useful for more general modeling purposes. Future developments include, but are not limited to, the list below. < I take requests 🎤 >. If you have any, please get in touch with me.
 
